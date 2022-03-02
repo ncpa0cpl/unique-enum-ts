@@ -1,6 +1,6 @@
 {
   "name": "unique-enum-ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "author": "Szymon Bretner",
@@ -10,5 +10,13 @@
   },
   "scripts": {
     "build": "tsc"
+  },
+  "keywords": [
+    "enum",
+    "typescript",
+    "unique"
+  ],
+  "repository": {
+    "url": "https://github.com/ncpa0cpl/unique-enum-ts"
   }
 }
