@@ -10,12 +10,22 @@ Define the enum:
 import { UniqueEnum } from "unique-enum-ts";
 
 const MyEnum = UniqueEnum({
-  FOO: "foo",
-  BAR: "bar",
+  FOO: "FOO",
+  BAR: "BAR",
 } as const);
+
+// OR
+// Use the TS enum syntax and assert the values uniqueness with the UniqueEnum function
+
+enum MyEnum {
+  FOO = "FOO",
+  BAR = "BAR",
+}
+
+UniqueEnum(MyEnum);
 ```
 
-Use the enum:
+If you don't use the TS enums syntax, you will need to extract the enum type like this:
 
 ```ts
 type MyEnumValues = typeof MyEnum[keyof typeof MyEnum];
@@ -32,28 +42,11 @@ function baz(myEnum: MyEnumValues) {
 }
 ```
 
-## Alternative Usage
-
-Alternatively you can also use this utility to assert uniqueness of an actual enum:
-
-```ts
-import { UniqueEnum } from "unique-enum-ts";
-
-enum MyEnum {
-  FOO = "FOO",
-  BAR = "BAR",
-}
-
-UniqueEnum(MyEnum);
-```
-
-This just like the previous example will give an compilation Error if all the enum values are not unique.
-
 ## Enum Uniqueness
 
-Unique Enum TS does not do a uniqueness check at runtime. It only provides Typescript type checking on the enum values.
+Unique Enum does not do a uniqueness check at runtime. It only provides Typescript type checking on the enum values.
 
-This means that the following declaration will throw an compile error:
+This means that the following declaration will throw an compile error (since the value "foo" is used twice):
 
 ```ts
 import { UniqueEnum } from "unique-enum-ts";
@@ -65,4 +58,4 @@ const MyEnum = UniqueEnum({
 } as const);
 ```
 
-However if the compilation error were to be ignored, this code will execute just fine, without errors or warnings.
+However if the compilation error were to be ignored, this code will execute just fine, without any errors or warnings.
